@@ -81,6 +81,12 @@ export default {
           busy: "rgb(239 68 68)",
           offline: "rgb(156 163 175)",
         },
+        cta: {
+          DEFAULT: "hsl(var(--cta) / <alpha-value>)",
+          foreground: "hsl(var(--cta-foreground) / <alpha-value>)",
+        },
+        gold: "hsl(var(--gold) / <alpha-value>)",
+        terracotta: "#A85D48",
       },
       fontFamily: {
         sans: ["var(--font-sans)"],
