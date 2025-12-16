@@ -1,0 +1,50 @@
+Atue como um Desenvolvedor Sênior de Frontend e Especialista em CRO (Otimização de Conversão).
+
+Crie uma Landing Page de alta conversão para vender um E-book de culinária chamado "Sobremesas Festivas: Técnicas Francesas". O público-alvo são confeiteiras que querem lucrar no Natal sem depender de leite condensado caro.
+
+**Stack Tecnológica:**
+- HTML5
+- Tailwind CSS (via CDN)
+- Google Fonts (Use 'Playfair Display' para títulos e 'Lato' para corpo)
+- FontAwesome (para ícones)
+- JavaScript simples (para o FAQ e scroll suave)
+
+**Design System & Estilo:**
+- Fundo: Bege Creme Suave (#F5F0E6)
+- Texto Principal: Cinza Carvão (#3C4650)
+- Acentos/Detalhes: Terracota (#A85D48) e Dourado Fosco
+- Botões (CTA): Cinza Escuro (#2C3E50) com texto Branco. Hover deve clarear levemente.
+- Estilo: Elegante, minimalista, sofisticado (vibe de Pâtisserie Francesa).
+
+**Estrutura da Página (Ordem Obrigatória):**
+
+1.  **Header:** Logo centralizada (texto elegante "Brüske Pâtisserie") e botão pequeno "Área do Aluno".
+2.  **Hero Section (Dobra 1):**
+    - Headline (H1): "Lucre 3x Mais neste Natal com Sobremesas Francesas Sofisticadas (e Sem Leite Condensado)"
+    - Subheadline: "Descubra como se diferenciar da concorrência com doces finos, econômicos e que seus clientes vão amar."
+    - Vídeo Placeholder: Uma div cinza ou imagem com ícone de play simulando um VSL.
+    - CTA Principal: Botão grande "QUERO O EBOOK AGORA" com preço âncora abaixo ("De R$97 por 7x de R$7,83").
+3.  **Benefícios (Quebra de Objeção):**
+    - Título: "Por que esse E-book é diferente?"
+    - 4 Cards com ícones: "Economia Real (Ingredientes baratos)", "Técnicas Francesas (Valor Agregado)", "Zero Enjoo (Equilíbrio de açúcar)", "Suporte Total".
+4.  **Showcase (Fotos):**
+    - Grid de fotos placeholder (use unsplash.com/keywords:dessert,cake) mostrando: Pavlova, Rabanada, Terrine, Guirlanda.
+    - Legendas elegantes abaixo de cada foto.
+5.  **Prova Social (Persuasão):**
+    - Seção: "O que as alunas estão dizendo".
+    - 3 caixas de depoimentos simulando prints de WhatsApp/Instagram elogiando o lucro e o sabor.
+6.  **Bio da Autora:**
+    - Foto à esquerda (placeholder), texto à direita.
+    - Falar sobre formação na França (École Ducasse) e autoridade.
+7.  **Garantia (Risco Zero):**
+    - Selo de 7 dias de garantia incondicional. Texto reforçando segurança.
+8.  **FAQ (Accordion):**
+    - Perguntas: "Serve para iniciantes?", "Como acesso?", "Tem certificado?".
+9.  **Footer:**
+    - Copyright, Links de Política de Privacidade e Termos de Uso.
+
+**Instruções de Copywriting:**
+Use linguagem persuasiva. Foque na dor do "leite condensado caro" e no desejo de "lucro e reconhecimento". Use gatilhos de urgência nos botões.
+
+**Funcionalidade:**
+Certifique-se de que a página seja totalmente responsiva (mobile-first). O FAQ deve abrir e fechar ao clicar.
