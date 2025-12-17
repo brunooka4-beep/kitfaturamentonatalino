@@ -164,7 +164,7 @@ function HeroSection() {
             onClick={() => document.getElementById("final-cta")?.scrollIntoView({ behavior: "smooth" })}
           >
             <i className="fa-solid fa-shopping-cart mr-2"></i>
-            QUERO O KIT DE FATURAMENTO NATALINO AGORA
+            BAIXAR AGORA
           </Button>
 
           <p className="text-sm text-muted-foreground flex items-center justify-center gap-2">
@@ -509,7 +509,7 @@ function CTASection() {
           onClick={() => window.location.href = "https://www.ggcheckout.com/checkout/v2/9BIYn8ik1JqLesBU3igd"}
         >
           <i className="fa-solid fa-shopping-cart mr-2"></i>
-          QUERO O KIT DE FATURAMENTO NATALINO AGORA
+          BAIXAR AGORA
         </Button>
 
         <div className="flex flex-wrap justify-center gap-4 mt-6 text-sm text-muted-foreground">
