@@ -120,7 +120,7 @@ function HeroSection() {
   };
 
   return (
-    <section className="py-12 md:py-20 px-4">
+    <section className="py-10 md:py-20 px-4">
       <div className="max-w-4xl mx-auto text-center">
         <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl leading-tight text-foreground mb-6">
           Lucre <span className="text-terracotta">3x Mais</span> neste Natal com Sobremesas Francesas Sofisticadas
@@ -179,7 +179,7 @@ function HeroSection() {
 
 function BenefitsSection() {
   return (
-    <section className="py-16 px-4 bg-card/50">
+    <section className="py-12 md:py-16 px-4 bg-card/50">
       <div className="max-w-6xl mx-auto">
         <h2 className="font-serif text-2xl md:text-3xl text-center mb-12 text-foreground">
           Por que esse Kit de Faturamento Natalino é <span className="text-terracotta">diferente</span>?
@@ -210,7 +210,7 @@ function BenefitsSection() {
 
 function ShowcaseSection() {
   return (
-    <section className="py-16 px-4">
+    <section className="py-12 md:py-16 px-4">
       <div className="max-w-6xl mx-auto">
         <h2 className="font-serif text-2xl md:text-3xl text-center mb-4 text-foreground">
           Receitas que vão <span className="text-terracotta">encantar</span>
@@ -250,7 +250,7 @@ function ShowcaseSection() {
 
 function TestimonialsSection() {
   return (
-    <section className="py-16 px-4 bg-card/50">
+    <section className="py-12 md:py-16 px-4 bg-card/50">
       <div className="max-w-6xl mx-auto">
         <h2 className="font-serif text-2xl md:text-3xl text-center mb-4 text-foreground">
           O que as alunas estão <span className="text-terracotta">dizendo</span>
@@ -294,7 +294,7 @@ function TestimonialsSection() {
 
 function AuthorSection() {
   return (
-    <section className="py-16 px-4">
+    <section className="py-12 md:py-16 px-4">
       <div className="max-w-5xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div className="flex justify-center">
@@ -312,7 +312,7 @@ function AuthorSection() {
               </div>
             </div>
           </div>
-          <div>
+          <div className="text-center md:text-left">
             <h2 className="font-serif text-2xl md:text-3xl mb-4 text-foreground">
               Olá, eu sou a <span className="text-terracotta">Chef Helena</span>
             </h2>
@@ -332,7 +332,7 @@ function AuthorSection() {
                 forma simples, usando ingredientes acessíveis que você encontra em qualquer supermercado.
               </p>
             </div>
-            <div className="flex flex-wrap gap-4 mt-6">
+            <div className="flex flex-wrap justify-center md:justify-start gap-4 mt-6">
               <div className="flex items-center gap-2 text-sm">
                 <i className="fa-solid fa-certificate text-gold"></i>
                 <span>Certificada na França</span>
@@ -355,7 +355,7 @@ function AuthorSection() {
 
 function GuaranteeSection() {
   return (
-    <section className="py-16 px-4 bg-card/50">
+    <section className="py-12 md:py-16 px-4 bg-card/50">
       <div className="max-w-3xl mx-auto text-center">
         <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-terracotta/10 mb-6">
           <i className="fa-solid fa-shield-halved text-4xl text-terracotta"></i>
@@ -388,8 +388,8 @@ function GuaranteeSection() {
 
 function BonusSection() {
   return (
-    <section className="py-16 px-4">
-      <div className="max-w-4xl mx-auto bg-[#FDFBF7] border-2 border-dashed border-terracotta rounded-3xl p-8 md:p-12 relative overflow-hidden">
+    <section className="py-12 md:py-16 px-4">
+      <div className="max-w-4xl mx-auto bg-[#FDFBF7] border-2 border-dashed border-terracotta rounded-3xl p-6 md:p-12 relative overflow-hidden">
         {/* Decorative corner ribbon or badge could go here if needed */}
 
         <h2 className="font-serif text-2xl md:text-3xl text-center mb-10 text-foreground leading-tight">
@@ -457,7 +457,7 @@ function BonusSection() {
 
 function FAQSection() {
   return (
-    <section className="py-16 px-4">
+    <section className="py-12 md:py-16 px-4">
       <div className="max-w-3xl mx-auto">
         <h2 className="font-serif text-2xl md:text-3xl text-center mb-12 text-foreground">
           Perguntas <span className="text-terracotta">Frequentes</span>
@@ -489,7 +489,7 @@ function FAQSection() {
 
 function CTASection() {
   return (
-    <section id="final-cta" className="py-16 px-4 bg-gradient-to-br from-terracotta/10 to-gold/10">
+    <section id="final-cta" className="py-12 md:py-16 px-4 bg-gradient-to-br from-terracotta/10 to-gold/10">
       <div className="max-w-3xl mx-auto text-center">
         <h2 className="font-serif text-2xl md:text-3xl mb-4 text-foreground">
           Pronta para <span className="text-terracotta">transformar</span> seu Natal?
