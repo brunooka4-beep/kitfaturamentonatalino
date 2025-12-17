@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
@@ -24,33 +24,34 @@ const benefits = [
     title: "Zero Enjoo",
     description: "Equilíbrio perfeito de açúcar. Seus clientes vão querer repetir.",
   },
-  {
-    icon: "fa-solid fa-headset",
-    title: "Suporte Total",
-    description: "Tire suas dúvidas diretamente comigo. Você não vai ficar sozinha.",
-  },
+
 ];
 
 const desserts = [
   {
-    name: "Pavlova Natalina",
-    image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&h=300&fit=crop",
-    description: "Merengue crocante com frutas frescas",
+    name: "Guirlanda de Profiteroles",
+    image: "/guirlanda-profiteroles.jpg",
+    description: "Massa choux leve e recheada, perfeita para celebrar",
+  },
+  {
+    name: "Mendiants de Chocolate",
+    image: "/mendiants.jpg",
+    description: "Discos de chocolate nobre com frutas secas e castanhas",
+  },
+  {
+    name: "Verrine de Morango",
+    image: "/verrine-morango.jpg",
+    description: "Camadas de sabor e textura em uma apresentação elegante",
   },
   {
     name: "Rabanada Francesa",
-    image: "https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=400&h=300&fit=crop",
-    description: "A clássica French Toast sofisticada",
+    image: "/rabanada.jpg",
+    description: "A clássica French Toast com um toque de sofisticação",
   },
   {
-    name: "Terrine de Chocolate",
-    image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&h=300&fit=crop",
-    description: "Intensidade e elegância em cada fatia",
-  },
-  {
-    name: "Guirlanda Festiva",
-    image: "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=400&h=300&fit=crop",
-    description: "Sobremesa decorativa que encanta",
+    name: "Pavlova na Taça",
+    image: "/pavlova-taca.jpg",
+    description: "Merengue, creme e frutas frescas em uma versão moderna",
   },
 ];
 
@@ -78,15 +79,15 @@ const testimonials = [
 const faqItems = [
   {
     question: "Serve para iniciantes?",
-    answer: "Absolutamente! O e-book foi criado pensando em confeiteiras de todos os níveis. Cada receita tem passo a passo detalhado com fotos e dicas para você não errar. Se você já faz bolos e doces simples, vai conseguir executar todas as receitas.",
+    answer: "Absolutamente! O Kit de Faturamento Natalino foi criado pensando em confeiteiras de todos os níveis. Cada receita tem passo a passo detalhado com fotos e dicas para você não errar. Se você já faz bolos e doces simples, vai conseguir executar todas as receitas.",
   },
   {
     question: "Como acesso o material?",
-    answer: "Imediatamente após a confirmação do pagamento, você recebe um e-mail com o link para download do e-book em PDF. Pode baixar no celular, tablet ou computador e acessar quando quiser, para sempre.",
+    answer: "Imediatamente após a confirmação do pagamento, você recebe um e-mail com o link para download do Kit de Faturamento Natalino em PDF. Pode baixar no celular, tablet ou computador e acessar quando quiser, para sempre.",
   },
   {
     question: "Tem certificado?",
-    answer: "Este é um e-book digital com receitas e técnicas. Não oferecemos certificado formal, mas você terá todo o conhecimento para criar sobremesas de nível profissional e se destacar no mercado.",
+    answer: "Este é um Kit de Faturamento Natalino digital com receitas e técnicas. Não oferecemos certificado formal, mas você terá todo o conhecimento para criar sobremesas de nível profissional e se destacar no mercado.",
   },
 ];
 
@@ -98,26 +99,22 @@ function Header() {
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
-        <button 
+        <button
           onClick={scrollToTop}
           className="font-serif text-xl md:text-2xl tracking-wide text-foreground"
           data-testid="link-logo"
         >
-          Brüske <span className="text-terracotta">Pâtisserie</span>
+          Helena <span className="text-terracotta">Leclair</span>
         </button>
-        <Button 
-          variant="outline" 
-          size="sm"
-          data-testid="button-area-aluno"
-        >
-          Área do Aluno
-        </Button>
+
       </div>
     </header>
   );
 }
 
 function HeroSection() {
+  const [isPlaying, setIsPlaying] = useState(false);
+
   const scrollToCTA = () => {
     document.getElementById("cta-section")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -134,37 +131,42 @@ function HeroSection() {
         <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
           Descubra como se diferenciar da concorrência com doces finos, econômicos e que seus clientes vão amar.
         </p>
-        
-        <div className="relative max-w-2xl mx-auto mb-8 rounded-md overflow-hidden shadow-lg">
-          <div className="aspect-video bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center">
-            <button 
-              className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover-elevate active-elevate-2 transition-transform"
-              data-testid="button-play-video"
-            >
-              <i className="fa-solid fa-play text-3xl text-white ml-1"></i>
-            </button>
-          </div>
-          <div className="absolute bottom-4 left-4 right-4">
-            <div className="bg-black/60 backdrop-blur-sm rounded-md px-4 py-2 text-white text-sm">
-              <i className="fa-solid fa-clock mr-2"></i>
-              Assista o vídeo e descubra como transformar seu Natal
-            </div>
+
+        <div className="relative max-w-sm mx-auto mb-8 rounded-md overflow-hidden shadow-lg">
+          <div style={{ padding: '177.78% 0 0 0', position: 'relative' }}>
+            {!isPlaying && (
+              <div
+                className="absolute inset-0 z-20 flex items-center justify-center bg-black/10 cursor-pointer group"
+                onClick={() => setIsPlaying(true)}
+              >
+                <div className="bg-[#dc2626] text-white rounded-xl px-10 py-8 flex flex-col items-center gap-3 shadow-2xl transition-transform group-hover:scale-105 border-2 border-white/20">
+                  <i className="fa-solid fa-play text-4xl mb-1 drop-shadow-md"></i>
+                  <span className="font-bold text-xl leading-none drop-shadow-md">Clique para assistir</span>
+                  <span className="text-sm font-medium drop-shadow-md">com áudio</span>
+                </div>
+              </div>
+            )}
+            <iframe
+              src={`https://player.vimeo.com/video/1146785914?badge=0&autopause=0&player_id=0&app_id=58479${isPlaying ? '&autoplay=1' : '&controls=0'}`}
+              frameBorder="0"
+              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+              title="YTDown.com_YouTube_Ebook-Sobremesas-Festivas_Media_45AhJtE9ylw_001_1080p"
+            ></iframe>
           </div>
         </div>
 
         <div id="cta-section" className="space-y-4">
-          <Button 
-            size="lg" 
+          <Button
+            size="lg"
             className="bg-cta text-cta-foreground text-lg px-8 py-6 font-semibold shadow-lg"
             data-testid="button-cta-hero"
+            onClick={() => document.getElementById("final-cta")?.scrollIntoView({ behavior: "smooth" })}
           >
             <i className="fa-solid fa-shopping-cart mr-2"></i>
-            QUERO O EBOOK AGORA
+            QUERO O KIT DE FATURAMENTO NATALINO AGORA
           </Button>
-          <p className="text-muted-foreground">
-            <span className="line-through text-sm">De R$97</span>
-            <span className="text-terracotta font-bold text-lg ml-2">por 7x de R$7,83</span>
-          </p>
+
           <p className="text-sm text-muted-foreground flex items-center justify-center gap-2">
             <i className="fa-solid fa-shield-halved text-terracotta"></i>
             Compra 100% segura
@@ -180,12 +182,12 @@ function BenefitsSection() {
     <section className="py-16 px-4 bg-card/50">
       <div className="max-w-6xl mx-auto">
         <h2 className="font-serif text-2xl md:text-3xl text-center mb-12 text-foreground">
-          Por que esse E-book é <span className="text-terracotta">diferente</span>?
+          Por que esse Kit de Faturamento Natalino é <span className="text-terracotta">diferente</span>?
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {benefits.map((benefit, index) => (
-            <Card 
-              key={index} 
+            <Card
+              key={index}
               className="p-6 text-center hover-elevate transition-all"
               data-testid={`card-benefit-${index}`}
             >
@@ -218,19 +220,19 @@ function ShowcaseSection() {
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {desserts.map((dessert, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className="group"
               data-testid={`card-dessert-${index}`}
             >
-              <div className="relative overflow-hidden rounded-md mb-3">
+              <div className="relative overflow-hidden rounded-3xl mb-3">
                 <img
                   src={dessert.image}
                   alt={dessert.name}
-                  className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="w-full h-auto border-4 border-terracotta rounded-3xl transition-transform duration-300 group-hover:scale-105"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl" />
               </div>
               <h3 className="font-serif text-lg text-foreground mb-1">
                 {dessert.name}
@@ -258,8 +260,8 @@ function TestimonialsSection() {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {testimonials.map((testimonial, index) => (
-            <Card 
-              key={index} 
+            <Card
+              key={index}
               className="p-6 relative"
               data-testid={`card-testimonial-${index}`}
             >
@@ -298,9 +300,11 @@ function AuthorSection() {
           <div className="flex justify-center">
             <div className="relative">
               <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-terracotta/20 to-gold/20 flex items-center justify-center overflow-hidden">
-                <div className="w-56 h-56 md:w-72 md:h-72 rounded-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-                  <i className="fa-solid fa-user text-6xl text-gray-400"></i>
-                </div>
+                <img
+                  src="/chef-helena-new.jpg"
+                  alt="Chef Helena Leclair"
+                  className="w-56 h-56 md:w-72 md:h-72 rounded-full object-cover"
+                />
               </div>
               <div className="absolute -bottom-2 -right-2 bg-terracotta text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
                 <i className="fa-solid fa-graduation-cap mr-2"></i>
@@ -310,21 +314,21 @@ function AuthorSection() {
           </div>
           <div>
             <h2 className="font-serif text-2xl md:text-3xl mb-4 text-foreground">
-              Olá, eu sou a <span className="text-terracotta">Chef Brüske</span>
+              Olá, eu sou a <span className="text-terracotta">Chef Helena</span>
             </h2>
             <div className="space-y-4 text-muted-foreground">
               <p>
-                Há mais de 10 anos trabalho com confeitaria e tive o privilégio de estudar na 
-                <span className="font-semibold text-foreground"> École Ducasse</span>, uma das mais 
+                Há mais de 10 anos trabalho com confeitaria e tive o privilégio de estudar na
+                <span className="font-semibold text-foreground"> École Ducasse</span>, uma das mais
                 prestigiadas escolas de gastronomia do mundo, fundada pelo lendário chef Alain Ducasse.
               </p>
               <p>
-                Depois de anos aperfeiçoando técnicas francesas, percebi que muitas confeiteiras 
-                brasileiras ficavam presas às mesmas receitas com leite condensado — caras e comuns. 
+                Depois de anos aperfeiçoando técnicas francesas, percebi que muitas confeiteiras
+                brasileiras ficavam presas às mesmas receitas com leite condensado — caras e comuns.
               </p>
               <p>
-                Criei este e-book para compartilhar os segredos da 
-                <span className="font-semibold text-foreground"> alta pâtisserie francesa</span> de 
+                Criei este Kit de Faturamento Natalino para compartilhar os segredos da
+                <span className="font-semibold text-foreground"> alta pâtisserie francesa</span> de
                 forma simples, usando ingredientes acessíveis que você encontra em qualquer supermercado.
               </p>
             </div>
@@ -360,7 +364,7 @@ function GuaranteeSection() {
           Garantia de <span className="text-terracotta">7 Dias</span>
         </h2>
         <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
-          Se por qualquer motivo você não ficar satisfeita com o e-book, basta enviar um e-mail 
+          Se por qualquer motivo você não ficar satisfeita com o Kit de Faturamento Natalino, basta enviar um e-mail
           em até 7 dias após a compra e devolvemos 100% do seu dinheiro. Sem perguntas, sem burocracia.
         </p>
         <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
@@ -382,6 +386,75 @@ function GuaranteeSection() {
   );
 }
 
+function BonusSection() {
+  return (
+    <section className="py-16 px-4">
+      <div className="max-w-4xl mx-auto bg-[#FDFBF7] border-2 border-dashed border-terracotta rounded-3xl p-8 md:p-12 relative overflow-hidden">
+        {/* Decorative corner ribbon or badge could go here if needed */}
+
+        <h2 className="font-serif text-2xl md:text-3xl text-center mb-10 text-foreground leading-tight">
+          COMPRANDO HOJE, VOCÊ GANHA<br />
+          <span className="text-terracotta">2 PRESENTES EXCLUSIVOS</span> (GRÁTIS)
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+          {/* Bonus 01 */}
+          <Card className="p-6 border-none shadow-md bg-white hover:shadow-lg transition-shadow">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-full bg-terracotta/10 flex items-center justify-center flex-shrink-0">
+                <i className="fa-solid fa-calculator text-xl text-terracotta"></i>
+              </div>
+              <div>
+                <h3 className="font-serif text-lg font-bold text-foreground mb-2">
+                  Calculadora de Lucro Real
+                </h3>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Nunca mais tenha prejuízo. Uma planilha automática que diz exatamente quanto cobrar por cada doce para garantir seu lucro.
+                </p>
+                <div className="text-sm">
+                  <span className="text-muted-foreground line-through mr-2">De R$ 47,00</span>
+                  <span className="text-terracotta font-bold">POR: GRÁTIS</span>
+                </div>
+              </div>
+            </div>
+          </Card>
+
+          {/* Bonus 02 */}
+          <Card className="p-6 border-none shadow-md bg-white hover:shadow-lg transition-shadow">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-full bg-terracotta/10 flex items-center justify-center flex-shrink-0">
+                <i className="fa-solid fa-gift text-xl text-terracotta"></i>
+              </div>
+              <div>
+                <h3 className="font-serif text-lg font-bold text-foreground mb-2">
+                  Guia de Embalagens de Luxo
+                </h3>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Aprenda a valorizar seu doce em até 50% usando embalagens econômicas que parecem presentes caros.
+                </p>
+                <div className="text-sm">
+                  <span className="text-muted-foreground line-through mr-2">De R$ 37,00</span>
+                  <span className="text-terracotta font-bold">POR: GRÁTIS</span>
+                </div>
+              </div>
+            </div>
+          </Card>
+        </div>
+
+        <div className="text-center">
+          <Button
+            size="lg"
+            className="bg-cta text-cta-foreground text-lg px-8 py-6 font-semibold shadow-lg animate-pulse hover:animate-none w-full md:w-auto"
+            onClick={() => document.getElementById("final-cta")?.scrollIntoView({ behavior: "smooth" })}
+          >
+            QUERO MEU KIT DE FATURAMENTO NATALINO + BÔNUS AGORA
+          </Button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function FAQSection() {
   return (
     <section className="py-16 px-4">
@@ -391,8 +464,8 @@ function FAQSection() {
         </h2>
         <Accordion type="single" collapsible className="space-y-4">
           {faqItems.map((item, index) => (
-            <AccordionItem 
-              key={index} 
+            <AccordionItem
+              key={index}
               value={`item-${index}`}
               className="border border-border rounded-md px-4 bg-card"
               data-testid={`accordion-faq-${index}`}
@@ -416,7 +489,7 @@ function FAQSection() {
 
 function CTASection() {
   return (
-    <section className="py-16 px-4 bg-gradient-to-br from-terracotta/10 to-gold/10">
+    <section id="final-cta" className="py-16 px-4 bg-gradient-to-br from-terracotta/10 to-gold/10">
       <div className="max-w-3xl mx-auto text-center">
         <h2 className="font-serif text-2xl md:text-3xl mb-4 text-foreground">
           Pronta para <span className="text-terracotta">transformar</span> seu Natal?
@@ -424,19 +497,21 @@ function CTASection() {
         <p className="text-muted-foreground mb-8">
           Junte-se a mais de 2.000 confeiteiras que já estão lucrando com sobremesas francesas
         </p>
-        <Button 
-          size="lg" 
+        <p className="text-muted-foreground mb-6">
+          <span className="line-through text-sm">De R$97</span>
+          <span className="text-terracotta font-bold text-lg ml-2">por até 4x de R$8,57</span>
+          <span className="block text-xs mt-1">ou R$29,90 à vista</span>
+        </p>
+        <Button
+          size="lg"
           className="bg-cta text-cta-foreground text-lg px-8 py-6 font-semibold shadow-lg mb-4"
           data-testid="button-cta-final"
+          onClick={() => window.location.href = "https://www.ggcheckout.com/checkout/v2/9BIYn8ik1JqLesBU3igd"}
         >
           <i className="fa-solid fa-shopping-cart mr-2"></i>
-          QUERO O EBOOK AGORA
+          QUERO O KIT DE FATURAMENTO NATALINO AGORA
         </Button>
-        <p className="text-muted-foreground">
-          <span className="line-through text-sm">De R$97</span>
-          <span className="text-terracotta font-bold text-lg ml-2">por 7x de R$7,83</span>
-          <span className="block text-xs mt-1">ou R$47 à vista</span>
-        </p>
+
         <div className="flex flex-wrap justify-center gap-4 mt-6 text-sm text-muted-foreground">
           <div className="flex items-center gap-2">
             <i className="fa-solid fa-bolt text-terracotta"></i>
@@ -462,18 +537,18 @@ function Footer() {
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="font-serif text-lg text-foreground">
-            Brüske <span className="text-terracotta">Pâtisserie</span>
+            Helena <span className="text-terracotta">Leclair</span>
           </p>
           <div className="flex flex-wrap gap-6 text-sm text-muted-foreground">
-            <a 
-              href="#" 
+            <a
+              href="#"
               className="hover:text-foreground transition-colors"
               data-testid="link-privacy"
             >
               Política de Privacidade
             </a>
-            <a 
-              href="#" 
+            <a
+              href="#"
               className="hover:text-foreground transition-colors"
               data-testid="link-terms"
             >
@@ -482,19 +557,51 @@ function Footer() {
           </div>
         </div>
         <div className="text-center mt-6 text-xs text-muted-foreground">
-          <p>© 2024 Brüske Pâtisserie. Todos os direitos reservados.</p>
-          <p className="mt-1">
-            Este produto é vendido e entregue pela Hotmart. A marca Brüske Pâtisserie é de propriedade exclusiva de seu titular.
-          </p>
+          <p>© 2024 Helena Leclair. Todos os direitos reservados.</p>
+
         </div>
       </div>
     </footer>
   );
 }
 
+
+
+function CountdownTimer() {
+  const [timeLeft, setTimeLeft] = useState(15 * 60); // 15 minutes in seconds
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => (prev > 0 ? prev - 1 : 15 * 60));
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const minutes = Math.floor(timeLeft / 60);
+  const seconds = timeLeft % 60;
+
+  return (
+    <div className="sticky top-0 z-[60] bg-[#DC2626] text-white py-2 px-4 flex justify-center items-center gap-3 text-sm md:text-base font-medium shadow-md">
+      <i className="fa-regular fa-clock text-lg"></i>
+      <span>Promoção termina em:</span>
+      <div className="flex items-center gap-1">
+        <div className="bg-white/20 rounded-md px-2 py-1 min-w-[2.5rem] text-center font-bold">
+          {minutes.toString().padStart(2, "0")}
+        </div>
+        <span>:</span>
+        <div className="bg-white/20 rounded-md px-2 py-1 min-w-[2.5rem] text-center font-bold">
+          {seconds.toString().padStart(2, "0")}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-background">
+      <CountdownTimer />
       <Header />
       <main>
         <HeroSection />
@@ -503,6 +610,7 @@ export default function LandingPage() {
         <TestimonialsSection />
         <AuthorSection />
         <GuaranteeSection />
+        <BonusSection />
         <FAQSection />
         <CTASection />
       </main>
