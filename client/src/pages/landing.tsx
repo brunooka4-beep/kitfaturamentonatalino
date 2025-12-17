@@ -159,7 +159,7 @@ function HeroSection() {
         <div id="cta-section" className="space-y-4">
           <Button
             size="lg"
-            className="bg-cta text-cta-foreground text-lg px-8 py-6 font-semibold shadow-lg"
+            className="bg-cta text-cta-foreground text-lg px-8 py-6 font-semibold shadow-lg w-full md:w-auto"
             data-testid="button-cta-hero"
             onClick={() => document.getElementById("final-cta")?.scrollIntoView({ behavior: "smooth" })}
           >
@@ -447,7 +447,7 @@ function BonusSection() {
             className="bg-cta text-cta-foreground text-lg px-8 py-6 font-semibold shadow-lg animate-pulse hover:animate-none w-full md:w-auto"
             onClick={() => document.getElementById("final-cta")?.scrollIntoView({ behavior: "smooth" })}
           >
-            QUERO MEU KIT DE FATURAMENTO NATALINO + BÔNUS AGORA
+            SIM, QUERO LUCRAR
           </Button>
         </div>
       </div>
@@ -504,7 +504,7 @@ function CTASection() {
         </p>
         <Button
           size="lg"
-          className="bg-cta text-cta-foreground text-lg px-8 py-6 font-semibold shadow-lg mb-4"
+          className="bg-cta text-cta-foreground text-lg px-8 py-6 font-semibold shadow-lg mb-4 w-full md:w-auto"
           data-testid="button-cta-final"
           onClick={() => window.location.href = "https://www.ggcheckout.com/checkout/v2/9BIYn8ik1JqLesBU3igd"}
         >
